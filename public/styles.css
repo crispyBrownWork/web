@@ -1,0 +1,206 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1a1a1a;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+}
+
+.wheel-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin: 20px auto;
+}
+
+.wheel {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: conic-gradient(
+        from 0deg,
+        #0f0 0deg 10deg,
+        #000 10deg 20deg,
+        #f00 20deg 30deg,
+        #000 30deg 40deg,
+        #f00 40deg 50deg,
+        #000 50deg 60deg,
+        #f00 60deg 70deg,
+        #000 70deg 80deg,
+        #f00 80deg 90deg,
+        #000 90deg 100deg,
+        #f00 100deg 110deg,
+        #000 110deg 120deg,
+        #f00 120deg 130deg,
+        #000 130deg 140deg,
+        #f00 140deg 150deg,
+        #000 150deg 160deg,
+        #f00 160deg 170deg,
+        #000 170deg 180deg,
+        #f00 180deg 190deg,
+        #000 190deg 200deg,
+        #f00 200deg 210deg,
+        #000 210deg 220deg,
+        #f00 220deg 230deg,
+        #000 230deg 240deg,
+        #f00 240deg 250deg,
+        #000 250deg 260deg,
+        #f00 260deg 270deg,
+        #000 270deg 280deg,
+        #f00 280deg 290deg,
+        #000 290deg 300deg,
+        #f00 300deg 310deg,
+        #000 310deg 320deg,
+        #f00 320deg 330deg,
+        #000 330deg 340deg,
+        #f00 340deg 350deg,
+        #000 350deg 360deg
+    );
+    transition: transform 5s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+    box-shadow: 0 0 20px rgba(255,255,255,0.2);
+}
+
+.wheel.winner {
+    animation: glowPulse 1s infinite;
+}
+
+@keyframes glowPulse {
+    0% { box-shadow: 0 0 20px rgba(255,255,255,0.2); }
+    50% { box-shadow: 0 0 40px rgba(255,255,255,0.6); }
+    100% { box-shadow: 0 0 20px rgba(255,255,255,0.2); }
+}
+
+.pointer {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 30px solid #fff;
+}
+
+.bet-controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background-color: #45a049;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+input {
+    padding: 10px;
+    font-size: 16px;
+    width: 100px;
+    border-radius: 5px;
+    border: 2px solid #4CAF50;
+}
+
+.stats {
+    margin-top: 20px;
+    font-size: 18px;
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 2px solid #4CAF50;
+}
+
+.winning-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #f00;
+    animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+.win-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 20px 40px;
+    border-radius: 10px;
+    font-size: 24px;
+    color: gold;
+    z-index: 1001;
+    animation: popIn 0.5s ease-out forwards;
+}
+
+@keyframes popIn {
+    to {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.streak-bonus {
+    color: gold;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#winStreak {
+    color: #4CAF50;
+}
